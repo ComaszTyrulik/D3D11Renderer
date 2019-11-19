@@ -1,5 +1,6 @@
 #pragma once
 #include "../Vertex.h"
+#include "../IPipeline.h"
 
 #include <vector>
 
