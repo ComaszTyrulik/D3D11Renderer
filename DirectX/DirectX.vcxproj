@@ -194,6 +194,7 @@
     <ClInclude Include="Batch.h" />
     <ClInclude Include="BatchRenderer.h" />
     <ClInclude Include="DepthStencilBuffer.h" />
+    <ClInclude Include="Models\IDrawable.h" />
     <ClInclude Include="Renderers\InstancedRenderer.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Context.h" />
