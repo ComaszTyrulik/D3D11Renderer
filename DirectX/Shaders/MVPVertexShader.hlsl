@@ -1,0 +1,30 @@
+struct VS_Out
+{
+    float4 color : COLOR;
+    float2 uv : TEXCOORDS;
+    float4 position : SV_POSITION;
+};
+
+cbuffer ModelViewProjection
+{
+    matrix vp;
+};
+
+static const uint MODEL_MATRIX_COUNT = 1000;
+
+cbuffer ModelMatrices
+{
+    matrix modelMatrix[MODEL_MATRIX_COUNT];
+};
+
+VS_Out main(float3 position : POSITION, float4 color : COLOR, float2 uv : TEXCOORDS, uint vId : SV_VertexID)
+{
+    matrix mvp = mul(vp, modelMatrix[vId / 36]);
+
+    VS_Out output;
+    output.color = color;
+    output.uv = uv;
+    output.position = mul(mvp, float4(position, 1.0f));
+
+    return output;
+}

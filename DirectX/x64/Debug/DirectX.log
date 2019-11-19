@@ -1,0 +1,96 @@
+﻿  AbstractApp.cpp
+  InstancingApp.cpp
+  ModelsRenderingApp.cpp
+  SimpleRenderingApp.cpp
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\BatchRenderer.h(74,1): warning C4267: 'argument': conversion from 'size_t' to 'UINT', possible loss of data (compiling source file Apps\AbstractApp.cpp)
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\BatchRenderer.h(74,1): warning C4267: 'argument': conversion from 'size_t' to 'UINT', possible loss of data (compiling source file Apps\InstancingApp.cpp)
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\BatchRenderer.h(74,1): warning C4267: 'argument': conversion from 'size_t' to 'UINT', possible loss of data (compiling source file Apps\SimpleRenderingApp.cpp)
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Renderers\InstancedRenderer.h(87,1): warning C4267: 'argument': conversion from 'size_t' to 'UINT', possible loss of data (compiling source file Apps\AbstractApp.cpp)
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Renderers\InstancedRenderer.h(87,1): warning C4267: 'argument': conversion from 'size_t' to 'UINT', possible loss of data (compiling source file Apps\InstancingApp.cpp)
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\BatchRenderer.h(74,1): warning C4267: 'argument': conversion from 'size_t' to 'UINT', possible loss of data (compiling source file Apps\ModelsRenderingApp.cpp)
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Renderers\InstancedRenderer.h(87,1): warning C4267: 'argument': conversion from 'size_t' to 'UINT', possible loss of data (compiling source file Apps\SimpleRenderingApp.cpp)
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Renderers\InstancedRenderer.h(87,1): warning C4267: 'argument': conversion from 'size_t' to 'UINT', possible loss of data (compiling source file Apps\ModelsRenderingApp.cpp)
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(52,69): warning C4305: 'argument': truncation from 'long double' to '_Ty'
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(52,69): warning C4305:         with
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(52,69): warning C4305:         [
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(52,69): warning C4305:             _Ty=float
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(52,69): warning C4305:         ] (compiling source file Apps\AbstractApp.cpp)
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(53,69): warning C4305: 'argument': truncation from 'long double' to '_Ty'
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(53,69): warning C4305:         with
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(53,69): warning C4305:         [
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(53,69): warning C4305:             _Ty=float
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(53,69): warning C4305:         ] (compiling source file Apps\AbstractApp.cpp)
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(54,70): warning C4305: 'argument': truncation from 'long double' to '_Ty'
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(54,70): warning C4305:         with
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(54,70): warning C4305:         [
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(54,70): warning C4305:             _Ty=float
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(54,70): warning C4305:         ] (compiling source file Apps\AbstractApp.cpp)
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(52,69): warning C4305: 'argument': truncation from 'long double' to '_Ty'
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(52,69): warning C4305:         with
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(52,69): warning C4305:         [
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(52,69): warning C4305:             _Ty=float
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(52,69): warning C4305:         ] (compiling source file Apps\InstancingApp.cpp)
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(53,69): warning C4305: 'argument': truncation from 'long double' to '_Ty'
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(53,69): warning C4305:         with
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(53,69): warning C4305:         [
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(53,69): warning C4305:             _Ty=float
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(53,69): warning C4305:         ] (compiling source file Apps\InstancingApp.cpp)
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(54,70): warning C4305: 'argument': truncation from 'long double' to '_Ty'
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(54,70): warning C4305:         with
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(54,70): warning C4305:         [
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(54,70): warning C4305:             _Ty=float
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(54,70): warning C4305:         ] (compiling source file Apps\InstancingApp.cpp)
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(52,69): warning C4305: 'argument': truncation from 'long double' to '_Ty'
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(52,69): warning C4305:         with
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(52,69): warning C4305:         [
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(52,69): warning C4305:             _Ty=float
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(52,69): warning C4305:         ] (compiling source file Apps\SimpleRenderingApp.cpp)
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(52,69): warning C4305: 'argument': truncation from 'long double' to '_Ty'
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(52,69): warning C4305:         with
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(52,69): warning C4305:         [
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(52,69): warning C4305:             _Ty=float
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(52,69): warning C4305:         ] (compiling source file Apps\ModelsRenderingApp.cpp)
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(53,69): warning C4305: 'argument': truncation from 'long double' to '_Ty'
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(53,69): warning C4305:         with
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(53,69): warning C4305:         [
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(53,69): warning C4305:             _Ty=float
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(53,69): warning C4305:         ] (compiling source file Apps\SimpleRenderingApp.cpp)
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(53,69): warning C4305: 'argument': truncation from 'long double' to '_Ty'
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(53,69): warning C4305:         with
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(53,69): warning C4305:         [
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(53,69): warning C4305:             _Ty=float
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(53,69): warning C4305:         ] (compiling source file Apps\ModelsRenderingApp.cpp)
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(54,70): warning C4305: 'argument': truncation from 'long double' to '_Ty'
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(54,70): warning C4305:         with
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(54,70): warning C4305:         [
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(54,70): warning C4305:             _Ty=float
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(54,70): warning C4305:         ] (compiling source file Apps\SimpleRenderingApp.cpp)
+  Model.cpp
+  WinMain.cpp
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(54,70): warning C4305: 'argument': truncation from 'long double' to '_Ty'
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(54,70): warning C4305:         with
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(54,70): warning C4305:         [
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(54,70): warning C4305:             _Ty=float
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(54,70): warning C4305:         ] (compiling source file Apps\ModelsRenderingApp.cpp)
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\WinInclude.h(25,1): warning C4005: '_WIN32_WINNT': macro redefinition (compiling source file WinMain.cpp)
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\sdkddkver.h(217): message : see previous definition of '_WIN32_WINNT' (compiling source file WinMain.cpp)
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\WinInclude.h(68,1): warning C4005: 'STRICT': macro redefinition (compiling source file WinMain.cpp)
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\minwindef.h(23): message : see previous definition of 'STRICT' (compiling source file WinMain.cpp)
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\BatchRenderer.h(74,1): warning C4267: 'argument': conversion from 'size_t' to 'UINT', possible loss of data (compiling source file WinMain.cpp)
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Renderers\InstancedRenderer.h(87,1): warning C4267: 'argument': conversion from 'size_t' to 'UINT', possible loss of data (compiling source file WinMain.cpp)
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(52,69): warning C4305: 'argument': truncation from 'long double' to '_Ty'
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(52,69): warning C4305:         with
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(52,69): warning C4305:         [
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(52,69): warning C4305:             _Ty=float
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(52,69): warning C4305:         ] (compiling source file WinMain.cpp)
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(53,69): warning C4305: 'argument': truncation from 'long double' to '_Ty'
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(53,69): warning C4305:         with
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(53,69): warning C4305:         [
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(53,69): warning C4305:             _Ty=float
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(53,69): warning C4305:         ] (compiling source file WinMain.cpp)
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(54,70): warning C4305: 'argument': truncation from 'long double' to '_Ty'
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(54,70): warning C4305:         with
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(54,70): warning C4305:         [
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(54,70): warning C4305:             _Ty=float
+C:\Users\Tomek\Documents\Projects\C++\DirectX\DirectX\Apps\AbstractApp.h(54,70): warning C4305:         ] (compiling source file WinMain.cpp)
+  DirectX.vcxproj -> C:\Users\Tomek\Documents\Projects\C++\DirectX\x64\Debug\DirectX.exe
