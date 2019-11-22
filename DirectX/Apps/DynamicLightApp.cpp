@@ -1,6 +1,6 @@
-#include "ModelsRenderingApp.h"
+#include "DynamicLightingApp.h"
 
-void ModelsRenderingApp::Init(const std::string& name, int positionX, int positionY, int width, int height)
+void DynamicLightApp::Init(const std::string& name, int positionX, int positionY, int width, int height)
 {
 	m_width = width;
 	m_height = height;
@@ -46,39 +46,54 @@ void ModelsRenderingApp::Init(const std::string& name, int positionX, int positi
 			"C:\\Users\\Tomek\\Documents\\Projects\\C++\\DirectX\\DirectX\\ModelsFiles\\nanosuit\\nanosuit.obj",
 			m_context,
 			texture,
-			glm::vec3(-20.0f, -20.0f, 0.0f),
-			glm::vec3(2.0f, 2.0f, 2.0f),
+			glm::vec3(0.0f, -10.0f, 0.0f),
+			glm::vec3(1.0f, 1.0f, 1.0f),
 			glm::vec3(0.0f, 180.0f, 0.0f)
 		)
 	);
+	Material material;
+	material.ambientColor = { 1.0f, 0.5f, 0.31f, 1.0f };
+	material.diffuseColor = { 1.0f, 0.5f, 0.31f, 1.0f };
+	material.specularColor = { 0.5f, 0.5f, 0.5f, 1.0f };
+	material.shininess = 32.0f;
+
+	m_models.back()->SetMaterial(std::move(material));
 
 	glm::mat4 vpMatrix =
 		glm::perspectiveLH(glm::radians(45.0f), static_cast<float>(width) / static_cast<float>(height), 0.1f, 400.f)*
-		glm::lookAtLH(m_cameraEye, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glm::lookAtLH(m_cameraEye, m_cameraEye + m_frontVector, m_upVector);
 
 	m_vpCBuffer = m_context->CreateConstantBuffer(ViewProjectionCBufferData{ vpMatrix });
 	m_vertexShader->SetConstantBuffer(*m_vpCBuffer);
 
-	m_dirLight.direction = { -20.0f, 5.0f, -10.0f, 0.0f };
-	m_dirLight.color = { 1.0f, 1.0f, 1.0f, 3.0f };
+	m_viewerPosition.position = m_cameraEye;
+	m_viewerPositionCBuffer = m_context->CreateConstantBuffer(m_viewerPosition);
 
-	m_dirLightBuffer = m_context->CreateConstantBuffer(m_dirLight);
-	m_pixelShader->SetConstantBuffer(*m_dirLightBuffer, 1);
+	m_light.data.position = { 20.0f, 5.0f, -10.0f };
+	m_light.data.ambientColor = { 1.0f, 1.0f, 1.0f, 0.2f };
+	m_light.data.diffuseColor = { 1.0f, 1.0f, 1.0f, 0.5f };
+	m_light.data.specularColor = { 1.0f, 1.0f, 1.0f, 1.0f };
 
-	m_viewerPositionCBufferData.position = m_cameraEye;
-	m_viewerPositionCBuffer = m_context->CreateConstantBuffer(m_viewerPositionCBufferData);
+	m_lightCBuffer = m_context->CreateConstantBuffer(m_light);
+	m_pixelShader->SetConstantBuffer(*m_lightCBuffer, 1);
 }
 
-void ModelsRenderingApp::DoFrame()
+void DynamicLightApp::DoFrame()
 {
-	const auto rotation = glm::rotate(glm::mat4(1.0f), 0.01f, glm::vec3(0.0f, 1.0f, 0.0f));
+	ProcessInput();
+	ProcessLights();
 
-	auto& direction = m_dirLight.direction;
-	direction = rotation * direction;
+	m_pipeline->Prepare({ 0.1f, 0.1f, 0.1f, 1.0f });
+	for (auto& model : m_models)
+	{
+		model->Update();
+		model->Draw(m_pipeline.get(), false);
+	}
+	m_pipeline->Present();
+}
 
-	m_dirLightBuffer->Update(m_dirLight);
-	m_pixelShader->SetConstantBuffer(*m_dirLightBuffer, 1);
-
+void DynamicLightApp::ProcessInput()
+{
 	if (m_window->IsKeyPressed(VK_UP))
 	{
 		m_cameraEye.z += 1.0f;
@@ -88,32 +103,42 @@ void ModelsRenderingApp::DoFrame()
 		m_cameraEye.z -= 1.0f;
 	}
 
-	m_viewerPositionCBufferData.position = m_cameraEye;
-	m_viewerPositionCBuffer->Update(m_viewerPositionCBufferData);
+	if (m_window->IsKeyPressed(VK_RIGHT))
+	{
+		m_cameraEye.x += 1.0f;
+	}
+	else if (m_window->IsKeyPressed(VK_LEFT))
+	{
+		m_cameraEye.x -= 1.0f;
+	}
+
+	m_viewerPosition.position = m_cameraEye;
+	m_viewerPositionCBuffer->Update(m_viewerPosition);
 	m_pixelShader->SetConstantBuffer(*m_viewerPositionCBuffer, 2);
 
 	glm::mat4 vpMatrix =
 		glm::perspectiveLH(glm::radians(45.0f), static_cast<float>(m_width) / static_cast<float>(m_height), 0.1f, 400.f)*
-		glm::lookAtLH(m_cameraEye, m_cameraEye + glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glm::lookAtLH(m_cameraEye, m_cameraEye + m_frontVector, m_upVector);
 
 	ViewProjectionCBufferData vp;
 	vp.data = vpMatrix;
 
 	m_vpCBuffer->Update(vp);
 	m_vertexShader->SetConstantBuffer(*m_vpCBuffer);
-
-	m_pipeline->Prepare({ 0.1f, 0.1f, 0.1f, 1.0f });
-	for (auto& model : m_models)
-	{
-		//model->RotatePitchYawRoll(0.0f, -0.5f, 0.0f);
-		model->Update();
-
-		model->Draw(m_pipeline.get());
-	}
-	m_pipeline->Present();
 }
 
-void ModelsRenderingApp::CreateShaders()
+void DynamicLightApp::ProcessLights()
+{
+	const auto rotation = glm::rotate(glm::mat4(1.0f), 0.01f, glm::vec3(0.0f, 1.0f, 0.0f));
+
+	auto& direction = m_light.data.position;
+	direction = rotation * glm::vec4(direction, 1.0f);
+
+	m_lightCBuffer->Update(m_light);
+	m_pixelShader->SetConstantBuffer(*m_lightCBuffer, 1);
+}
+
+void DynamicLightApp::CreateShaders()
 {
 	InputLayout layout(
 		{
@@ -125,9 +150,9 @@ void ModelsRenderingApp::CreateShaders()
 	);
 	m_vertexShader =
 		m_context->CreateVertexShader(
-			L"C:\\Users\\Tomek\\Documents\\Projects\\C++\\DirectX\\x64\\Debug\\LightingVertexShader.cso",
+			L"C:\\Users\\Tomek\\Documents\\Projects\\C++\\DirectX\\x64\\Debug\\DirectLightingVertexShader.cso",
 			layout
 		);
 
-	m_pixelShader = m_context->CreatePixelShader(L"C:\\Users\\Tomek\\Documents\\Projects\\C++\\DirectX\\x64\\Debug\\MultiTexturesPixelShader.cso");
+	m_pixelShader = m_context->CreatePixelShader(L"C:\\Users\\Tomek\\Documents\\Projects\\C++\\DirectX\\x64\\Debug\\DirectLightingPixelShader.cso");
 }

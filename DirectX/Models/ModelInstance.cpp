@@ -12,16 +12,6 @@ namespace d3dt
 		Scale(scale);
 		RotatePitchYawRoll(rotation.x, rotation.y, rotation.z);
 	}
-	
-	const std::vector<Vertex>& ModelInstance::Vertices() const
-	{
-		return m_modelRef->Vertices();
-	}
-
-	const std::vector<unsigned int>& ModelInstance::Indices() const
-	{
-		return m_modelRef->Indices();
-	}
 
 	void ModelInstance::Scale(const glm::vec3& scale)
 	{
@@ -97,9 +87,14 @@ namespace d3dt
 	{
 		return m_modelRef;
 	}
-	
-	void ModelInstance::Draw(IPipeline* pipeline) const
+
+	void ModelInstance::SetMaterial(Material material)
 	{
-		m_modelRef->Draw(pipeline, m_modelMatrix);
+		m_modelRef->SetMaterial(std::move(material));
+	}
+	
+	void ModelInstance::Draw(IPipeline* pipeline, bool useTextures) const
+	{
+		m_modelRef->Draw(pipeline, m_modelMatrix, useTextures);
 	}
 }

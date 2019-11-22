@@ -1,16 +1,14 @@
 #pragma once
 #include "IApplication.h"
-#include "InstancingApp.h"
-#include "SimpleRenderingApp.h"
 #include "ModelsRenderingApp.h"
+#include "DynamicLightingApp.h"
 
 #include <memory>
 
 enum class APP_ID
 {
-	INSTANCING,
-	SIMPLE_RENDERING,
 	MODELS_RENDERING,
+	DYNAMIC_LIGHTING
 };
 
 class ApplicationFactory
@@ -20,12 +18,10 @@ public:
 	{
 		switch (ID)
 		{
-		case APP_ID::INSTANCING:
-			return std::make_unique<InstancingApp>();
-		case APP_ID::SIMPLE_RENDERING:
-			return std::make_unique<SimpleRenderingApp>();
 		case APP_ID::MODELS_RENDERING:
 			return std::make_unique<ModelsRenderingApp>();
+		case APP_ID::DYNAMIC_LIGHTING:
+			return std::make_unique<DynamicLightApp>();
 		default:
 			throw std::exception("Invalid ID. No App available");
 		}

@@ -57,31 +57,19 @@
     <ClCompile Include="Models\Model.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Renderers\ConstantBufferMVPRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Models\ModelInstance.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderers\InstancedRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BatchRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DepthStencilBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Apps\InstancingApp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Apps\AbstractApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Apps\SimpleRenderingApp.cpp">
+    <ClCompile Include="Apps\ModelsRenderingApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Apps\ModelsRenderingApp.cpp">
+    <ClCompile Include="Apps\DynamicLightApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -890,9 +878,6 @@
     <ClInclude Include="Models\Model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Renderers\ConstantBufferMVPRenderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Models\IModelInstance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -905,19 +890,10 @@
     <ClInclude Include="Models\IModel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Renderers\InstancedRenderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BatchRenderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DepthStencilBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Apps\IApplication.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Apps\InstancingApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Apps\ApplicationFactory.h">
@@ -926,13 +902,22 @@
     <ClInclude Include="Apps\AbstractApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Apps\SimpleRenderingApp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Apps\ModelsRenderingApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Models\IDrawable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TexturesArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Apps\DynamicLightingApp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Lights\Light.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -944,6 +929,8 @@
     <FxCompile Include="Shaders\InstancingVertexShader.hlsl" />
     <FxCompile Include="Shaders\Lighting\DirectLightingPixelShader.hlsl" />
     <FxCompile Include="Shaders\Lighting\LightingVertexShader.hlsl" />
+    <FxCompile Include="Shaders\Lighting\MultiTexturesPixelShader.hlsl" />
+    <FxCompile Include="Shaders\Lighting\DirectLightingVertexShader.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="vendor\glm\glm\detail\func_common.inl">

@@ -15,6 +15,7 @@
 #include <d3d11.h>
 #include <wrl.h>
 #include <memory>
+#include "TexturesArray.h"
 
 namespace d3dt
 {
@@ -46,6 +47,7 @@ namespace d3dt
 		std::unique_ptr<PixelShader> CreatePixelShader(const WCHAR* filepath);
 		std::unique_ptr<Texture> CreateTexture(const beu::Image& data);
 		std::unique_ptr<DepthStencilBuffer> CreateDepthStencilBuffer(UINT width, UINT height);
+		std::unique_ptr<TexturesArray> CreateTexturesArray(const std::vector<beu::Image>& texturesData);
 
 		template <typename T>
 		std::unique_ptr<IConstantBuffer<T>> CreateConstantBuffer(const T& data)

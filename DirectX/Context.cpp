@@ -104,4 +104,9 @@ namespace d3dt
 	{
 		return std::make_unique<DepthStencilBuffer>(width, height, m_context, m_device);
 	}
+	
+	std::unique_ptr<TexturesArray> Context::CreateTexturesArray(const std::vector<beu::Image>& texturesData)
+	{
+		return std::make_unique<TexturesArray>(texturesData, m_context, m_device);
+	}
 }

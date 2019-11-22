@@ -14,6 +14,8 @@ namespace d3dt
 
 	class Texture
 	{
+		friend class TexturesArray;
+
 	public:
 		Texture(const beu::Image& textureData, wrl::ComPtr<ID3D11DeviceContext> context, wrl::ComPtr<ID3D11Device> device);
 		void Use();

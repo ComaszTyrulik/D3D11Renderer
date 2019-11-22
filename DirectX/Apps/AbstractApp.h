@@ -14,10 +14,7 @@
 #include "../Models/Model.h"
 #include "../Models/ModelInstance.h"
 #include "../Pipeline.h"
-#include "../BatchRenderer.h"
 #include "../IConstantBuffer.h"
-#include "../Renderers/ConstantBufferMVPRenderer.h"
-#include "../Renderers/InstancedRenderer.h"
 #include "../DepthStencilBuffer.h"
 
 #include "../vendor/BEG/ImageLoader.h"

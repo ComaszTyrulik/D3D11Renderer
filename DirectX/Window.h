@@ -4,6 +4,7 @@
 
 #include "WinInclude.h"
 #include "Graphics.h"
+#include <unordered_map>
 
 namespace d3dt
 {
@@ -19,6 +20,7 @@ namespace d3dt
         Window operator=(Window&&) = delete;
 
         int ProcessMessages();
+		bool IsKeyPressed(int keyCode) const;
 
 		class WindowHandle
 		{
@@ -48,10 +50,15 @@ namespace d3dt
 			return m_hWnd;
 		}
 
+	private:
+		static void ProcessKeyboard(WPARAM wParam, bool isPressed);
+
     private:
         inline static const auto WINDOW_CLASS_NAME = "d3dWnd";
         static LRESULT CALLBACK ProcessWindowMessage(HWND windowHandle, UINT message, WPARAM wParam, LPARAM lParam);
         WindowHandle m_hWnd;
         inline static HINSTANCE m_hInstance = nullptr;
+
+		static std::unordered_map<int, bool> m_keys;
     };
 }

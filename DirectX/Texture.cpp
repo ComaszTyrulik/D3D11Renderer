@@ -26,7 +26,7 @@ namespace d3dt
 		API_CALL(m_device->CreateTexture2D(&textureDesc, &resourceData, &texture));
 
 		D3D11_SHADER_RESOURCE_VIEW_DESC resourceViewDesc = {};
-		resourceViewDesc.ViewDimension = D3D11_SRV_DIMENSION::D3D10_1_SRV_DIMENSION_TEXTURE2D;
+		resourceViewDesc.ViewDimension = D3D11_SRV_DIMENSION::D3D11_SRV_DIMENSION_TEXTURE2D;
 		resourceViewDesc.Texture2D.MipLevels = 1;
 		resourceViewDesc.Texture2D.MostDetailedMip = 0;
 		API_CALL(m_device->CreateShaderResourceView(texture.Get(), &resourceViewDesc, &m_textureResourceView));

@@ -8,7 +8,7 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	try {
 		const auto appFactory = ApplicationFactory();
 
-		auto app = appFactory.Create(APP_ID::MODELS_RENDERING);
+		auto app = appFactory.Create(APP_ID::DYNAMIC_LIGHTING);
 		app->Init("Test Window", 0, 0, 1920, 1080);
 
 		return app->Start();

@@ -7,6 +7,6 @@ namespace d3dt
 	{
 	public:
 		virtual ~IDrawable() = default;
-		virtual void Draw(IPipeline* pipeline) const = 0;
+		virtual void Draw(IPipeline* pipeline, bool useTextures = true) const = 0;
 	};
 }

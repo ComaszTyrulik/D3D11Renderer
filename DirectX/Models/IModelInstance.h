@@ -3,6 +3,7 @@
 #include "../Texture.h"
 #include "ModelReference.h"
 #include "IDrawable.h"
+#include "../Material.h"
 
 #include <memory>
 
@@ -17,5 +18,6 @@ namespace d3dt
 		virtual void Update() = 0;
 
 		virtual const ModelReference& Reference() const = 0;
+		virtual void SetMaterial(Material material) = 0;
 	};
 }

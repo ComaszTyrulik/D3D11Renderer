@@ -1,6 +1,7 @@
 #pragma once
 #include "../Vertex.h"
 #include "../IPipeline.h"
+#include "../Material.h"
 
 #include <vector>
 
@@ -10,10 +11,7 @@ namespace d3dt
 	{
 	public:
 		virtual ~IModel() = default;
-		
-		virtual const std::vector<Vertex>& Vertices() const = 0;
-		virtual const std::vector<unsigned int>& Indices() const = 0;
-		
-		virtual void Draw(IPipeline* pipeline, const glm::mat4& modelMatrix) const = 0;
+		virtual void Draw(IPipeline* pipeline, const glm::mat4& modelMatrix, bool useTextures) const = 0;
+		virtual void SetMaterial(Material material) = 0;
 	};
 }

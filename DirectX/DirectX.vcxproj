@@ -161,12 +161,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Apps\AbstractApp.cpp" />
-    <ClCompile Include="Apps\InstancingApp.cpp" />
+    <ClCompile Include="Apps\DynamicLightApp.cpp" />
     <ClCompile Include="Apps\ModelsRenderingApp.cpp" />
-    <ClCompile Include="Apps\SimpleRenderingApp.cpp" />
-    <ClCompile Include="BatchRenderer.cpp" />
     <ClCompile Include="DepthStencilBuffer.cpp" />
-    <ClCompile Include="Renderers\InstancedRenderer.cpp" />
     <ClCompile Include="Context.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="IndexBuffer.cpp" />
@@ -175,7 +172,6 @@
     <ClCompile Include="Models\ModelInstance.cpp" />
     <ClCompile Include="Pipeline.cpp" />
     <ClCompile Include="PixelShader.cpp" />
-    <ClCompile Include="Renderers\ConstantBufferMVPRenderer.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="vendor\Chili\Timer.cpp" />
     <ClCompile Include="vendor\glm\glm\detail\glm.cpp" />
@@ -187,15 +183,14 @@
   <ItemGroup>
     <ClInclude Include="Apps\AbstractApp.h" />
     <ClInclude Include="Apps\ApplicationFactory.h" />
+    <ClInclude Include="Apps\DynamicLightingApp.h" />
     <ClInclude Include="Apps\IApplication.h" />
-    <ClInclude Include="Apps\InstancingApp.h" />
     <ClInclude Include="Apps\ModelsRenderingApp.h" />
-    <ClInclude Include="Apps\SimpleRenderingApp.h" />
     <ClInclude Include="Batch.h" />
-    <ClInclude Include="BatchRenderer.h" />
     <ClInclude Include="DepthStencilBuffer.h" />
+    <ClInclude Include="Lights\Light.h" />
+    <ClInclude Include="Material.h" />
     <ClInclude Include="Models\IDrawable.h" />
-    <ClInclude Include="Renderers\InstancedRenderer.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Context.h" />
     <ClInclude Include="D3D11ConstantBuffer.h" />
@@ -213,8 +208,8 @@
     <ClInclude Include="Models\ModelReference.h" />
     <ClInclude Include="Pipeline.h" />
     <ClInclude Include="PixelShader.h" />
-    <ClInclude Include="Renderers\ConstantBufferMVPRenderer.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="TexturesArray.h" />
     <ClInclude Include="vendor\BEG\Image.h" />
     <ClInclude Include="vendor\BEG\ImageLoader.h" />
     <ClInclude Include="vendor\Chili\Timer.h" />
@@ -482,11 +477,25 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
     </FxCompile>
+    <FxCompile Include="Shaders\Lighting\DirectLightingVertexShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
     <FxCompile Include="Shaders\Lighting\LightingVertexShader.hlsl">
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0_level_9_3</ShaderModel>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0_level_9_3</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Shaders\Lighting\MultiTexturesPixelShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>
     <FxCompile Include="Shaders\MVPVertexShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>

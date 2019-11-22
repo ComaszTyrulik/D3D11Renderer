@@ -10,9 +10,6 @@ namespace d3dt
 	{
 	public:
 		~IGeometry() = default;
-
-		virtual const std::vector<Vertex>& Vertices() const = 0;
-		virtual const std::vector<unsigned int>& Indices() const = 0;
 		
 		virtual void Scale(const glm::vec3& scale) = 0;
 		virtual void RotatePitchYawRoll(float pitch, float yaw, float roll) = 0;

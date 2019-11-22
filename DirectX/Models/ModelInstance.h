@@ -14,9 +14,6 @@ namespace d3dt
 		ModelInstance(ModelReference modelRef, const glm::vec3& translation, const glm::vec3& scale, const glm::vec3& rotation, std::shared_ptr<Texture> texture);
 
 		// Inherited via IGeometry
-		virtual const std::vector<Vertex>& Vertices() const override;
-		virtual const std::vector<unsigned int>& Indices() const override;
-
 		virtual void Scale(const glm::vec3& scale) override;
 		virtual void RotatePitchYawRoll(float pitch, float yaw, float roll) override;
 		virtual void RotateThetaPhiChi(float theta, float phi, float chi) override;
@@ -28,9 +25,10 @@ namespace d3dt
 		virtual const glm::mat4& GetModelMatrix() const override;
 
 		virtual const ModelReference& Reference() const override;
+		virtual void SetMaterial(Material material) override;
 
 		// Inherited via IDrawable
-		virtual void Draw(IPipeline* pipeline) const override;
+		virtual void Draw(IPipeline* pipeline, bool useTextures = true) const override;
 
 	private:
 		ModelReference m_modelRef;

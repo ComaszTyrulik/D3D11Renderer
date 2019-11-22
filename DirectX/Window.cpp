@@ -2,6 +2,7 @@
 
 namespace d3dt
 {
+	std::unordered_map<int, bool> Window::m_keys = std::unordered_map<int, bool>();
     Window::Window(const std::string & name, int positionX, int positionY, int width, int height) noexcept
     {
         Window::m_hInstance = GetModuleHandle(nullptr);
@@ -57,7 +58,12 @@ namespace d3dt
         return 0;
     }
 
-    LRESULT CALLBACK Window::ProcessWindowMessage(HWND windowHandle, UINT message, WPARAM wParam, LPARAM lParam)
+	bool Window::IsKeyPressed(int keyCode) const
+	{
+		return m_keys[keyCode];
+	}
+
+	LRESULT CALLBACK Window::ProcessWindowMessage(HWND windowHandle, UINT message, WPARAM wParam, LPARAM lParam)
     {
         switch (message) {
             case WM_CLOSE:
@@ -70,9 +76,18 @@ namespace d3dt
                     
                     return 0;
                 }
+				ProcessKeyboard(wParam, true);
                 break;
+			case WM_KEYUP:
+				ProcessKeyboard(wParam, false);
+				break;
         }
         
         return DefWindowProc(windowHandle, message, wParam, lParam);
     }
+
+	void Window::ProcessKeyboard(WPARAM wParam, bool isPressed)
+	{
+		m_keys[wParam] = isPressed;
+	}
 }

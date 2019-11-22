@@ -40,7 +40,7 @@ namespace d3dt::d3d11
 
 	private:
 		static const UINT BUFFER_SIZE_MULTIPLY = 16;
-		static const UINT BUFFER_SIZE = (sizeof(T) % BUFFER_SIZE_MULTIPLY != 0) ? ((sizeof(T) / BUFFER_SIZE_MULTIPLY + 1) * BUFFER_SIZE_MULTIPLY) : sizeof(T);
+		static const UINT BUFFER_SIZE = ((sizeof(T) + BUFFER_SIZE_MULTIPLY - 1) / BUFFER_SIZE_MULTIPLY) * BUFFER_SIZE_MULTIPLY;
 
 		wrl::ComPtr<ID3D11Buffer> m_bufferPtr;
 		wrl::ComPtr<ID3D11DeviceContext> m_context;
