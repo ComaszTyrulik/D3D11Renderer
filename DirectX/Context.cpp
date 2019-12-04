@@ -5,8 +5,8 @@ namespace d3dt
 	Context::Context(const Window::WindowHandle& hWnd)
 	{
 		DXGI_SWAP_CHAIN_DESC sd = {};
-		sd.BufferDesc.Width = 0;
-		sd.BufferDesc.Height = 0;
+		sd.BufferDesc.Width = hWnd.Width();
+		sd.BufferDesc.Height = hWnd.Height();
 		sd.BufferDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;
 		sd.BufferDesc.RefreshRate.Numerator = 0;
 		sd.BufferDesc.RefreshRate.Denominator = 0;

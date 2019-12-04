@@ -2,6 +2,8 @@
 
 namespace d3dt
 {
+	Keyboard Window::kbd = Keyboard();
+
 	std::unordered_map<int, bool> Window::m_keys = std::unordered_map<int, bool>();
     Window::Window(const std::string & name, int positionX, int positionY, int width, int height) noexcept
     {
@@ -27,7 +29,9 @@ namespace d3dt
 				WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU,
 				positionX, positionY, width, height,
 				nullptr, nullptr, Window::m_hInstance, nullptr
-			)
+			),
+			width,
+			height
 		);
 
         ShowWindow(m_hWnd.m_windowHandle, SW_SHOW);
@@ -58,11 +62,6 @@ namespace d3dt
         return 0;
     }
 
-	bool Window::IsKeyPressed(int keyCode) const
-	{
-		return m_keys[keyCode];
-	}
-
 	LRESULT CALLBACK Window::ProcessWindowMessage(HWND windowHandle, UINT message, WPARAM wParam, LPARAM lParam)
     {
         switch (message) {
@@ -76,18 +75,21 @@ namespace d3dt
                     
                     return 0;
                 }
-				ProcessKeyboard(wParam, true);
-                break;
+			case WM_SYSKEYDOWN:
+				if (!(lParam & 0x40000000) || kbd.AutorepeatIsEnabled()) // filter autorepeat
+				{
+					kbd.OnKeyPressed(static_cast<unsigned char>(wParam));
+				}
+				break;
 			case WM_KEYUP:
-				ProcessKeyboard(wParam, false);
+			case WM_SYSKEYUP:
+				kbd.OnKeyReleased(static_cast<unsigned char>(wParam));
+				break;
+			case WM_CHAR:
+				kbd.OnChar(static_cast<unsigned char>(wParam));
 				break;
         }
         
         return DefWindowProc(windowHandle, message, wParam, lParam);
     }
-
-	void Window::ProcessKeyboard(WPARAM wParam, bool isPressed)
-	{
-		m_keys[wParam] = isPressed;
-	}
 }

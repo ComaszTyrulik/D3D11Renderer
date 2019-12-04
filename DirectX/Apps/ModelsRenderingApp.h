@@ -38,6 +38,9 @@ private:
 	
 	std::vector<std::shared_ptr<ModelInstance>> m_models;
 
-	glm::vec3 m_cameraEye = glm::vec3(0.0f, 0.0f, -100.0f);
+	glm::vec3 m_cameraEye = glm::vec3(0.0f, 0.0f, -50.0f);
+	glm::vec3 m_frontVector = glm::vec3(0.0f, 0.0f, 1.0f);
+	glm::vec3 m_upVector = glm::vec3(0.0f, 1.0f, 0.0f);
+
 	int m_width, m_height;
 };

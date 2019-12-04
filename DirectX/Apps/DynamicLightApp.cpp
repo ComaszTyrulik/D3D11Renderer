@@ -30,40 +30,24 @@ void DynamicLightApp::Init(const std::string& name, int positionX, int positionY
 	m_pipeline->SetPixelShader(m_pixelShader);
 	m_pipeline->SetViewport(Viewport(static_cast<float>(width), static_cast<float>(height)));
 
-	//m_models.push_back(
-	//	Model::CreateFromFile(
-	//		"C:\\Users\\Tomek\\Documents\\Projects\\C++\\DirectX\\DirectX\\ModelsFiles\\sponza.obj",
-	//		m_context,
-	//		texture,
-	//		glm::vec3(0.0f, -10.0f, -100.0f),
-	//		glm::vec3(200.0f, 200.0f, 200.0f),
-	//		glm::vec3(0.0f, 90.0f, 0.0f)
-	//	)
-	//);
-
 	m_models.push_back(
 		Model::CreateFromFile(
 			"C:\\Users\\Tomek\\Documents\\Projects\\C++\\DirectX\\DirectX\\ModelsFiles\\nanosuit\\nanosuit.obj",
 			m_context,
 			texture,
-			glm::vec3(0.0f, -10.0f, 0.0f),
+			glm::vec3(0.0f, -15.0f, 0.0f),
 			glm::vec3(1.0f, 1.0f, 1.0f),
 			glm::vec3(0.0f, 180.0f, 0.0f)
 		)
 	);
 	Material material;
-	material.ambientColor = { 1.0f, 0.5f, 0.31f, 1.0f };
-	material.diffuseColor = { 1.0f, 0.5f, 0.31f, 1.0f };
-	material.specularColor = { 0.5f, 0.5f, 0.5f, 1.0f };
-	material.shininess = 32.0f;
+	material.shininess = 16.0f;
 
 	m_models.back()->SetMaterial(std::move(material));
 
-	glm::mat4 vpMatrix =
-		glm::perspectiveLH(glm::radians(45.0f), static_cast<float>(width) / static_cast<float>(height), 0.1f, 400.f)*
-		glm::lookAtLH(m_cameraEye, m_cameraEye + m_frontVector, m_upVector);
+	m_camera = std::make_unique<FPPCamera>(m_cameraEye, m_frontVector, m_upVector, 45.0f, static_cast<float>(width) / static_cast<float>(height));
 
-	m_vpCBuffer = m_context->CreateConstantBuffer(ViewProjectionCBufferData{ vpMatrix });
+	m_vpCBuffer = m_context->CreateConstantBuffer(ViewProjectionCBufferData{ m_camera->GetMatrix() });
 	m_vertexShader->SetConstantBuffer(*m_vpCBuffer);
 
 	m_viewerPosition.position = m_cameraEye;
@@ -86,42 +70,71 @@ void DynamicLightApp::DoFrame()
 	m_pipeline->Prepare({ 0.1f, 0.1f, 0.1f, 1.0f });
 	for (auto& model : m_models)
 	{
+		//model->RotatePitchYawRoll(0.0f, 1.0f, 0.0f);
 		model->Update();
-		model->Draw(m_pipeline.get(), false);
+		model->Draw(m_pipeline.get(), true);
 	}
 	m_pipeline->Present();
 }
 
 void DynamicLightApp::ProcessInput()
 {
-	if (m_window->IsKeyPressed(VK_UP))
+	glm::vec3 cameraMovementVector(0.0f);
+
+	if (m_window->kbd.KeyIsPressed('W'))
 	{
-		m_cameraEye.z += 1.0f;
+		cameraMovementVector.z += 1.0f;
 	}
-	else if (m_window->IsKeyPressed(VK_DOWN))
+	else if (m_window->kbd.KeyIsPressed('S'))
 	{
-		m_cameraEye.z -= 1.0f;
+		cameraMovementVector.z -= 1.0f;
 	}
 
-	if (m_window->IsKeyPressed(VK_RIGHT))
+	if (m_window->kbd.KeyIsPressed('D'))
 	{
-		m_cameraEye.x += 1.0f;
+		cameraMovementVector.x += 1.0f;
 	}
-	else if (m_window->IsKeyPressed(VK_LEFT))
+	else if (m_window->kbd.KeyIsPressed('A'))
 	{
-		m_cameraEye.x -= 1.0f;
+		cameraMovementVector.x -= 1.0f;
 	}
 
-	m_viewerPosition.position = m_cameraEye;
+	if (m_window->kbd.KeyIsPressed('E'))
+	{
+		cameraMovementVector.y += 1.0f;
+	}
+	else if (m_window->kbd.KeyIsPressed('Q'))
+	{
+		cameraMovementVector.y -= 1.0f;
+	}
+
+	if (m_window->kbd.KeyIsPressed('K'))
+	{
+		m_camera->Rotate({ 0.0f, -1.0f, 0.0f });
+	}
+	else if (m_window->kbd.KeyIsPressed('L'))
+	{
+		m_camera->Rotate({ 0.0f, 1.0f, 0.0f });
+	}
+
+	if (m_window->kbd.KeyIsPressed('O'))
+	{
+		m_camera->Rotate({-1.0f, 0.0f, 0.0f });
+	}
+	else if (m_window->kbd.KeyIsPressed('P'))
+	{
+		m_camera->Rotate({ 1.0f, 0.0f, 0.0f });
+	}
+
+	m_camera->Move(cameraMovementVector);
+	m_camera->Update();
+
+	m_viewerPosition.position = m_camera->GetPosition();
 	m_viewerPositionCBuffer->Update(m_viewerPosition);
 	m_pixelShader->SetConstantBuffer(*m_viewerPositionCBuffer, 2);
 
-	glm::mat4 vpMatrix =
-		glm::perspectiveLH(glm::radians(45.0f), static_cast<float>(m_width) / static_cast<float>(m_height), 0.1f, 400.f)*
-		glm::lookAtLH(m_cameraEye, m_cameraEye + m_frontVector, m_upVector);
-
 	ViewProjectionCBufferData vp;
-	vp.data = vpMatrix;
+	vp.data = m_camera->GetMatrix();
 
 	m_vpCBuffer->Update(vp);
 	m_vertexShader->SetConstantBuffer(*m_vpCBuffer);

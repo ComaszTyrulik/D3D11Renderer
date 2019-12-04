@@ -170,9 +170,11 @@
     <ClCompile Include="InputLayout.cpp" />
     <ClCompile Include="Models\Model.cpp" />
     <ClCompile Include="Models\ModelInstance.cpp" />
+    <ClCompile Include="Camera\FPPCamera.cpp" />
     <ClCompile Include="Pipeline.cpp" />
     <ClCompile Include="PixelShader.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="vendor\Chili\Keyboard.cpp" />
     <ClCompile Include="vendor\Chili\Timer.cpp" />
     <ClCompile Include="vendor\glm\glm\detail\glm.cpp" />
     <ClCompile Include="vendor\stb_image\stb_image.cpp" />
@@ -187,7 +189,9 @@
     <ClInclude Include="Apps\IApplication.h" />
     <ClInclude Include="Apps\ModelsRenderingApp.h" />
     <ClInclude Include="Batch.h" />
+    <ClInclude Include="Camera\FPPCamera.h" />
     <ClInclude Include="DepthStencilBuffer.h" />
+    <ClInclude Include="Camera\ICamera.h" />
     <ClInclude Include="Lights\Light.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Models\IDrawable.h" />
@@ -212,6 +216,7 @@
     <ClInclude Include="TexturesArray.h" />
     <ClInclude Include="vendor\BEG\Image.h" />
     <ClInclude Include="vendor\BEG\ImageLoader.h" />
+    <ClInclude Include="vendor\Chili\Keyboard.h" />
     <ClInclude Include="vendor\Chili\Timer.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\compute_common.hpp" />
@@ -472,8 +477,8 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
     </FxCompile>
     <FxCompile Include="Shaders\Lighting\DirectLightingPixelShader.hlsl">
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0_level_9_3</ShaderModel>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0_level_9_3</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
     </FxCompile>
@@ -482,6 +487,8 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>
     <FxCompile Include="Shaders\Lighting\LightingVertexShader.hlsl">
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>

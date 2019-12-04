@@ -46,15 +46,15 @@ void ModelsRenderingApp::Init(const std::string& name, int positionX, int positi
 			"C:\\Users\\Tomek\\Documents\\Projects\\C++\\DirectX\\DirectX\\ModelsFiles\\nanosuit\\nanosuit.obj",
 			m_context,
 			texture,
-			glm::vec3(-20.0f, -20.0f, 0.0f),
-			glm::vec3(2.0f, 2.0f, 2.0f),
+			glm::vec3(0.0f, -15.0f, 0.0f),
+			glm::vec3(1.0f, 1.0f, 1.0f),
 			glm::vec3(0.0f, 180.0f, 0.0f)
 		)
 	);
 
 	glm::mat4 vpMatrix =
 		glm::perspectiveLH(glm::radians(45.0f), static_cast<float>(width) / static_cast<float>(height), 0.1f, 400.f)*
-		glm::lookAtLH(m_cameraEye, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glm::lookAtLH(m_cameraEye, m_cameraEye + m_frontVector, m_upVector);
 
 	m_vpCBuffer = m_context->CreateConstantBuffer(ViewProjectionCBufferData{ vpMatrix });
 	m_vertexShader->SetConstantBuffer(*m_vpCBuffer);
@@ -79,14 +79,14 @@ void ModelsRenderingApp::DoFrame()
 	m_dirLightBuffer->Update(m_dirLight);
 	m_pixelShader->SetConstantBuffer(*m_dirLightBuffer, 1);
 
-	if (m_window->IsKeyPressed(VK_UP))
-	{
-		m_cameraEye.z += 1.0f;
-	}
-	else if (m_window->IsKeyPressed(VK_DOWN))
-	{
-		m_cameraEye.z -= 1.0f;
-	}
+	//if (m_window->IsKeyPressed(VK_UP))
+	//{
+	//	m_cameraEye.z += 1.0f;
+	//}
+	//else if (m_window->IsKeyPressed(VK_DOWN))
+	//{
+	//	m_cameraEye.z -= 1.0f;
+	//}
 
 	m_viewerPositionCBufferData.position = m_cameraEye;
 	m_viewerPositionCBuffer->Update(m_viewerPositionCBufferData);

@@ -5,6 +5,7 @@
 #include "WinInclude.h"
 #include "Graphics.h"
 #include <unordered_map>
+#include "vendor/Chili/Keyboard.h"
 
 namespace d3dt
 {
@@ -20,7 +21,6 @@ namespace d3dt
         Window operator=(Window&&) = delete;
 
         int ProcessMessages();
-		bool IsKeyPressed(int keyCode) const;
 
 		class WindowHandle
 		{
@@ -29,7 +29,7 @@ namespace d3dt
 			using HandleType = HWND;
 			
 			WindowHandle() = default;
-			explicit WindowHandle(HandleType handle) : m_windowHandle(handle)
+			explicit WindowHandle(HandleType handle, int width, int height) : m_windowHandle(handle), m_width(width), m_height(height)
 			{
 			}
 		
@@ -41,14 +41,28 @@ namespace d3dt
 				return m_windowHandle;
 			}
 
+			int Width() const
+			{
+				return m_width;
+			}
+
+			int Height() const
+			{
+				return m_height;
+			}
+
 		private:
 			HandleType m_windowHandle;
+			int m_width, m_height;
 		};
 
 		const WindowHandle Handle() const
 		{
 			return m_hWnd;
 		}
+
+	public:
+		static Keyboard kbd;
 
 	private:
 		static void ProcessKeyboard(WPARAM wParam, bool isPressed);
