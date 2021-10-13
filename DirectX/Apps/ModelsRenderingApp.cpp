@@ -17,7 +17,7 @@ void ModelsRenderingApp::Init(const std::string& name, int positionX, int positi
 	{
 		const auto image =
 			beu::ImageLoader::loadImage(
-				"C:\\Users\\Tomek\\Documents\\Projects\\C++\\DirectX\\DirectX\\Textures\\doge.png",
+				"C:/Users/Tomek/Documents/Projects/C++/DirectX/DirectX/Textures/doge.png",
 				beu::PixelsFormat::BE_RGBA
 			);
 		texture = m_context->CreateTexture(image);
@@ -32,7 +32,7 @@ void ModelsRenderingApp::Init(const std::string& name, int positionX, int positi
 
 	//m_models.push_back(
 	//	Model::CreateFromFile(
-	//		"C:\\Users\\Tomek\\Documents\\Projects\\C++\\DirectX\\DirectX\\ModelsFiles\\sponza.obj",
+	//		"C:/Users/Tomek/Documents/Projects/C++/DirectX/DirectX/ModelsFiles/sponza.obj",
 	//		m_context,
 	//		texture,
 	//		glm::vec3(0.0f, -10.0f, -100.0f),
@@ -43,7 +43,7 @@ void ModelsRenderingApp::Init(const std::string& name, int positionX, int positi
 
 	m_models.push_back(
 		Model::CreateFromFile(
-			"C:\\Users\\Tomek\\Documents\\Projects\\C++\\DirectX\\DirectX\\ModelsFiles\\nanosuit\\nanosuit.obj",
+			"ModelsFiles/nanosuit/nanosuit.obj",
 			m_context,
 			texture,
 			glm::vec3(0.0f, -15.0f, 0.0f),
@@ -125,9 +125,9 @@ void ModelsRenderingApp::CreateShaders()
 	);
 	m_vertexShader =
 		m_context->CreateVertexShader(
-			L"C:\\Users\\Tomek\\Documents\\Projects\\C++\\DirectX\\x64\\Debug\\LightingVertexShader.cso",
+			L"../x64/Debug/LightingVertexShader.cso",
 			layout
 		);
 
-	m_pixelShader = m_context->CreatePixelShader(L"C:\\Users\\Tomek\\Documents\\Projects\\C++\\DirectX\\x64\\Debug\\MultiTexturesPixelShader.cso");
+	m_pixelShader = m_context->CreatePixelShader(L"../x64/Debug/MultiTexturesPixelShader.cso");
 }

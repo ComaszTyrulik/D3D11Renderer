@@ -135,11 +135,11 @@ namespace d3dt
 		{
 			aiString str;
 			material->GetTexture(type, i, &str);
-			std::string ass = "C:\\Users\\Tomek\\Documents\\Projects\\C++\\DirectX\\DirectX\\ModelsFiles\\nanosuit\\";
-			ass += str.C_Str();
+			std::string texturesFolder = "ModelsFiles/nanosuit/";
+			texturesFolder += str.C_Str();
 			images.push_back(
 				beu::ImageLoader::loadImage(
-					ass,
+					texturesFolder,
 					beu::PixelsFormat::BE_RGBA
 				)
 			);

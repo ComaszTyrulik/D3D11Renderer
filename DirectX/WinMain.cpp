@@ -12,7 +12,7 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 		const auto appFactory = ApplicationFactory();
 
 		auto app = appFactory.Create(APP_ID::DYNAMIC_LIGHTING);
-		app->Init("Test Window", 1920 / 2 - WIDTH / 2, 1080 / 2 - HEIGHT / 2, WIDTH, HEIGHT);
+		app->Init("D3D11", 1920 / 2 - WIDTH / 2, 1080 / 2 - HEIGHT / 2, WIDTH, HEIGHT);
 
 		return app->Start();
 	}

@@ -14,15 +14,6 @@ void DynamicLightApp::Init(const std::string& name, int positionX, int positionY
 
 	namespace beu = BeastEngine::Utils;
 	std::shared_ptr<Texture> texture = nullptr;
-	{
-		const auto image =
-			beu::ImageLoader::loadImage(
-				"C:\\Users\\Tomek\\Documents\\Projects\\C++\\DirectX\\DirectX\\Textures\\doge.png",
-				beu::PixelsFormat::BE_RGBA
-			);
-		texture = m_context->CreateTexture(image);
-	}
-
 	d3dt::Color color{ 1.0f, 1.0f, 1.0f, 1.0f };
 
 	m_pipeline = std::make_shared<Pipeline>(m_context);
@@ -32,9 +23,9 @@ void DynamicLightApp::Init(const std::string& name, int positionX, int positionY
 
 	m_models.push_back(
 		Model::CreateFromFile(
-			"C:\\Users\\Tomek\\Documents\\Projects\\C++\\DirectX\\DirectX\\ModelsFiles\\nanosuit\\nanosuit.obj",
+			"ModelsFiles/nanosuit/nanosuit.obj",
 			m_context,
-			texture,
+			nullptr,
 			glm::vec3(0.0f, -15.0f, 0.0f),
 			glm::vec3(1.0f, 1.0f, 1.0f),
 			glm::vec3(0.0f, 180.0f, 0.0f)
@@ -54,7 +45,7 @@ void DynamicLightApp::Init(const std::string& name, int positionX, int positionY
 	m_viewerPositionCBuffer = m_context->CreateConstantBuffer(m_viewerPosition);
 
 	m_light.data.position = { 20.0f, 5.0f, -10.0f };
-	m_light.data.ambientColor = { 1.0f, 1.0f, 1.0f, 0.2f };
+	m_light.data.ambientColor = { 1.0f, 1.0f, 1.0f, 0.3f };
 	m_light.data.diffuseColor = { 1.0f, 1.0f, 1.0f, 0.5f };
 	m_light.data.specularColor = { 1.0f, 1.0f, 1.0f, 1.0f };
 
@@ -70,7 +61,7 @@ void DynamicLightApp::DoFrame()
 	m_pipeline->Prepare({ 0.1f, 0.1f, 0.1f, 1.0f });
 	for (auto& model : m_models)
 	{
-		//model->RotatePitchYawRoll(0.0f, 1.0f, 0.0f);
+		model->RotatePitchYawRoll(0.0f, -0.5f, 0.0f);
 		model->Update();
 		model->Draw(m_pipeline.get(), true);
 	}
@@ -163,9 +154,9 @@ void DynamicLightApp::CreateShaders()
 	);
 	m_vertexShader =
 		m_context->CreateVertexShader(
-			L"C:\\Users\\Tomek\\Documents\\Projects\\C++\\DirectX\\x64\\Debug\\DirectLightingVertexShader.cso",
+			L"../x64/Debug/DirectLightingVertexShader.cso",
 			layout
 		);
 
-	m_pixelShader = m_context->CreatePixelShader(L"C:\\Users\\Tomek\\Documents\\Projects\\C++\\DirectX\\x64\\Debug\\DirectLightingPixelShader.cso");
+	m_pixelShader = m_context->CreatePixelShader(L"../x64/Debug/DirectLightingPixelShader.cso");
 }

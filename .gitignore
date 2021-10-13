@@ -40,3 +40,4 @@ x64/
 *.exe
 *.out
 *.app
+!DirectX/ModelsFiles/nanosuit/*
